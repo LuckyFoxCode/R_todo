@@ -1,0 +1,13 @@
+.input {
+  font-size: 14px;
+  line-height: 17px;
+  letter-spacing: 0.15px;
+  color: #c7c7c7;
+  background-color: #ffffff;
+  border: 1px solid #efefef;
+  border-radius: 4px;
+  padding: 7px 11px 8px;
+  &::placeholder {
+    color: #c7c7c7;
+  }
+}
