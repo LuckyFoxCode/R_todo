@@ -1,0 +1,35 @@
+.customBtn {
+  font-size: 14px;
+  line-height: 17px;
+  text-align: center;
+  letter-spacing: 0.15px;
+  color: #ffffff;
+  border-radius: 4px;
+  border: none;
+  padding: 9px 0 11px;
+  cursor: pointer;
+}
+
+.green,
+.gray {
+  transition: all 0.2s ease-in-out;
+}
+
+.green {
+  color: #ffffff;
+  background-color: #4dd599;
+
+  &:hover {
+    color: #9c9c9c;
+    box-shadow: 0px 2px 10px rgba(77, 213, 153, 0.5);
+  }
+}
+
+.gray {
+  color: #9c9c9c;
+  background-color: #f4f6f8;
+  &:hover {
+    color: #ffffff;
+    box-shadow: 0px 2px 10px rgba(244, 246, 248, 0.5);
+  }
+}
