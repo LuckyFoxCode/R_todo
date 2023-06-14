@@ -1,4 +1,4 @@
-import { FC, useState } from 'react';
+import { FC } from 'react';
 import { Icon } from '..';
 
 import styles from './AddButton.module.scss';
@@ -9,23 +9,19 @@ interface AddButtonProps {
 }
 
 export const AddButton: FC<AddButtonProps> = ({ title, setShowPopup }) => {
-  const [add, setAdd] = useState<boolean>(true);
-
   const addedHandler = () => {
     setShowPopup(true);
   };
 
   return (
-    add && (
-      <button
-        className={styles.button}
-        onClick={addedHandler}>
-        <Icon
-          name='plus'
-          className={styles.buttonIcon}
-        />
-        {title}
-      </button>
-    )
+    <button
+      className={styles.button}
+      onClick={addedHandler}>
+      <Icon
+        name='plus'
+        className={styles.buttonIcon}
+      />
+      {title}
+    </button>
   );
 };

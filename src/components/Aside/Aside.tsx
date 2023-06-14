@@ -4,7 +4,7 @@ import { FC, useState } from 'react';
 import styles from './Aside.module.scss';
 
 export const Aside: FC = () => {
-  const [showPopup, setShowPopup] = useState<boolean>(true);
+  const [showPopup, setShowPopup] = useState<boolean>(false);
 
   return (
     <aside className={styles.aside}>

@@ -1,4 +1,4 @@
-import { FC, Fragment, useState } from 'react';
+import { ChangeEvent, FC, FormEvent, Fragment, useState } from 'react';
 import { CustomButton, CustomInput, Icon } from '..';
 import styles from './AddFolder.module.scss';
 
@@ -9,43 +9,50 @@ interface AddFolderProps {
 interface ColorsDataProps {
   id: string;
   color: string;
-  isChecked: boolean;
 }
 
 const colorsData: ColorsDataProps[] = [
-  { id: 'c1', color: '#C9D1D3', isChecked: true },
-  { id: 'c2', color: '#42B883', isChecked: false },
-  { id: 'c3', color: '#64C4ED', isChecked: false },
-  { id: 'c4', color: '#FFBBCC', isChecked: false },
-  { id: 'c5', color: '#B6E6BD', isChecked: false },
-  { id: 'c6', color: '#C355F5', isChecked: false },
-  { id: 'c7', color: '#09011A', isChecked: false },
-  { id: 'c8', color: '#FF6464', isChecked: false },
+  { id: 'c1', color: '#C9D1D3' },
+  { id: 'c2', color: '#42B883' },
+  { id: 'c3', color: '#64C4ED' },
+  { id: 'c4', color: '#FFBBCC' },
+  { id: 'c5', color: '#B6E6BD' },
+  { id: 'c6', color: '#C355F5' },
+  { id: 'c7', color: '#09011A' },
+  { id: 'c8', color: '#FF6464' },
 ];
 
 export const AddFolder: FC<AddFolderProps> = ({ setShowPopup }) => {
-  const [colorCheck, setColorCheck] = useState<string>('#C9D1D3');
+  const [inputValue, setInputValue] = useState<string>('');
+  const [colorChecked, setColorChecked] = useState<string>('#C9D1D3');
 
-  const closeModal = () => {
+  const handleFormSubmit = (e: FormEvent) => {
+    e.preventDefault();
+
+    console.log('Added folder', { id: '01', title: inputValue, color: colorChecked });
+    setInputValue('');
     setShowPopup(false);
   };
 
   return (
-    <form className={styles.form}>
+    <form
+      className={styles.form}
+      onSubmit={handleFormSubmit}>
       <CustomInput
         placeholder='Название папки'
-        onChange={(e) => console.log(e.target.value)}
+        onChange={(e: ChangeEvent<HTMLInputElement>) => setInputValue(e.target.value)}
         className={styles.form__input}
       />
       <div className={styles.form__wrapper}>
         {[] &&
-          colorsData.map(({ id, color, isChecked }) => (
+          colorsData.map(({ id, color }) => (
             <Fragment key={id}>
               <input
                 type='radio'
-                name={color}
-                id={id}
-                checked={isChecked}
+                id={color}
+                value={color}
+                checked={colorChecked === color}
+                onChange={(e: ChangeEvent<HTMLInputElement>) => setColorChecked(e.target.value)}
               />
               <label
                 htmlFor={color}
@@ -61,7 +68,7 @@ export const AddFolder: FC<AddFolderProps> = ({ setShowPopup }) => {
       />
       <div
         className={styles.form__close}
-        onClick={closeModal}>
+        onClick={() => setShowPopup(false)}>
         <Icon
           name='plus'
           className={styles.form__close_icon}
