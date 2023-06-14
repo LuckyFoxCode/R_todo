@@ -5,14 +5,14 @@ import styles from './AddButton.module.scss';
 
 interface AddButtonProps {
   title: string | null;
+  setShowPopup: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
-export const AddButton: FC<AddButtonProps> = ({ title }) => {
+export const AddButton: FC<AddButtonProps> = ({ title, setShowPopup }) => {
   const [add, setAdd] = useState<boolean>(true);
 
   const addedHandler = () => {
-    setAdd((prevState) => !prevState);
-    console.log('Added click ');
+    setShowPopup(true);
   };
 
   return (
