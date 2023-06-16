@@ -1,0 +1,58 @@
+.item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 14px;
+  line-height: 16px;
+  letter-spacing: 0.15px;
+  background-color: transparent;
+  border-radius: 4px;
+  padding: 10px 13px 11px;
+  margin-bottom: 5px;
+  transition: all 0.2s ease-in-out;
+  cursor: pointer;
+
+  &:hover {
+    box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.05);
+    background-color: #fff;
+  }
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+
+  &__wrapper {
+    display: flex;
+    align-items: center;
+  }
+
+  &__color {
+    $size: 10px;
+    width: $size;
+    height: $size;
+    border-radius: 100%;
+    margin-right: 10px;
+  }
+
+  &__icon {
+    $size: 12px;
+    width: $size;
+    height: $size;
+    transform: rotate(45deg);
+
+    path {
+      transition: all 0.2s ease-in-out;
+    }
+
+    &:hover {
+      path {
+        stroke: #000;
+      }
+    }
+  }
+}
+
+.active {
+  background-color: #fff;
+  box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.05);
+}
