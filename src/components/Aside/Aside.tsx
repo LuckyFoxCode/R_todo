@@ -1,14 +1,15 @@
 import { AddButton, AddFolder, FolderList, Icon } from 'components/common';
-import { FC, useState } from 'react';
+import { Dispatch, FC, SetStateAction, useState } from 'react';
 
 import { DataProps } from 'App';
 import styles from './Aside.module.scss';
 
 interface AsideProps {
   data: DataProps[];
+  setData: Dispatch<SetStateAction<DataProps[]>>;
 }
 
-export const Aside: FC<AsideProps> = ({ data }) => {
+export const Aside: FC<AsideProps> = ({ data, setData }) => {
   const [showPopup, setShowPopup] = useState<boolean>(false);
 
   return (
@@ -22,7 +23,12 @@ export const Aside: FC<AsideProps> = ({ data }) => {
           Все задачи
         </button>
       )}
-      {!!data.length && <FolderList data={data} />}
+      {!!data.length && (
+        <FolderList
+          data={data}
+          setData={setData}
+        />
+      )}
       {!showPopup && (
         <AddButton
           title='Добавить папку'
@@ -30,7 +36,12 @@ export const Aside: FC<AsideProps> = ({ data }) => {
         />
       )}
 
-      {showPopup && <AddFolder setShowPopup={setShowPopup} />}
+      {showPopup && (
+        <AddFolder
+          setData={setData}
+          setShowPopup={setShowPopup}
+        />
+      )}
     </aside>
   );
 };

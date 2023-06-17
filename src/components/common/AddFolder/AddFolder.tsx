@@ -1,9 +1,12 @@
-import { ChangeEvent, FC, FormEvent, Fragment, useState } from 'react';
+import { DataProps } from 'App';
+import { ChangeEvent, Dispatch, FC, FormEvent, Fragment, SetStateAction, useState } from 'react';
+import { uid } from 'uid';
 import { CustomButton, CustomInput, Icon } from '..';
 import styles from './AddFolder.module.scss';
 
 interface AddFolderProps {
   setShowPopup: React.Dispatch<React.SetStateAction<boolean>>;
+  setData: Dispatch<SetStateAction<DataProps[]>>;
 }
 
 interface ColorsDataProps {
@@ -22,14 +25,21 @@ const colorsData: ColorsDataProps[] = [
   { id: 'c8', color: '#FF6464' },
 ];
 
-export const AddFolder: FC<AddFolderProps> = ({ setShowPopup }) => {
+export const AddFolder: FC<AddFolderProps> = ({ setShowPopup, setData }) => {
   const [inputValue, setInputValue] = useState<string>('');
   const [colorChecked, setColorChecked] = useState<string>('#C9D1D3');
 
   const handleFormSubmit = (e: FormEvent) => {
     e.preventDefault();
 
-    console.log('Added folder', { id: '01', title: inputValue, color: colorChecked });
+    const data: DataProps = {
+      id: uid(),
+      title: inputValue,
+      color: colorChecked,
+      isSelected: false,
+    };
+
+    setData((preveState) => [...preveState, data]);
     setInputValue('');
     setShowPopup(false);
   };

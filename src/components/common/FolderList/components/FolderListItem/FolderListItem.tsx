@@ -6,11 +6,19 @@ import styles from './FolderListItem.module.scss';
 
 interface FolderListItemProps {
   item: DataProps;
+  handleActiveFolder: (id: string) => void;
+  handleDeleteFolder: (id: string) => void;
 }
 
-export const FolderListItem: FC<FolderListItemProps> = ({ item }) => {
+export const FolderListItem: FC<FolderListItemProps> = ({
+  item,
+  handleActiveFolder,
+  handleDeleteFolder,
+}) => {
   return (
-    <li className={clsx(styles.item, item.isSelected ? styles.active : null)}>
+    <li
+      className={clsx(styles.item, item.isSelected ? styles.active : null)}
+      onClick={() => handleActiveFolder(item.id)}>
       <div className={styles.item__wrapper}>
         <div
           className={styles.item__color}
@@ -21,6 +29,8 @@ export const FolderListItem: FC<FolderListItemProps> = ({ item }) => {
       <Icon
         name='plus'
         className={styles.item__icon}
+        onClick={() => handleDeleteFolder(item.id)}
+        id={item.id}
       />
     </li>
   );

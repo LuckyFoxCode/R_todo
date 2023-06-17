@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import { Aside, Content } from './components';
 
 export interface DataProps {
@@ -7,15 +8,18 @@ export interface DataProps {
   isSelected: boolean;
 }
 
-const data: DataProps[] = [
-  { color: '#42B883', id: '01', title: 'Покупки', isSelected: false },
-  { color: '#64C4ED', id: '02', title: 'Фронтенд', isSelected: true },
-];
-
 export const App = () => {
+  const [data, setData] = useState<DataProps[]>([
+    { color: '#42B883', id: '01', title: 'Покупки', isSelected: false },
+    { color: '#64C4ED', id: '02', title: 'Фронтенд', isSelected: true },
+  ]);
+
   return (
     <div className='app'>
-      <Aside data={data} />
+      <Aside
+        data={data}
+        setData={setData}
+      />
       <Content />
     </div>
   );
