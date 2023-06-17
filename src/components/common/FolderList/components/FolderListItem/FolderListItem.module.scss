@@ -17,6 +17,10 @@
     background-color: #fff;
   }
 
+  &:hover &__icon {
+    opacity: 1;
+  }
+
   &:last-child {
     margin-bottom: 0;
   }
@@ -39,9 +43,11 @@
     width: $size;
     height: $size;
     transform: rotate(45deg);
+    opacity: 0;
+    transition: opacity 0.2s ease-in-out;
 
     path {
-      transition: all 0.2s ease-in-out;
+      transition: stroke 0.2s ease-in-out;
     }
 
     &:hover {
