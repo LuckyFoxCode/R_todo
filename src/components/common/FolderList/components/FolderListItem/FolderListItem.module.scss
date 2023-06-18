@@ -1,7 +1,6 @@
 .item {
   display: flex;
   align-items: center;
-  justify-content: space-between;
   font-size: 14px;
   line-height: 16px;
   letter-spacing: 0.15px;
@@ -17,17 +16,12 @@
     background-color: #fff;
   }
 
-  &:hover &__icon {
+  &:hover &__wrapper_icon {
     opacity: 1;
   }
 
   &:last-child {
     margin-bottom: 0;
-  }
-
-  &__wrapper {
-    display: flex;
-    align-items: center;
   }
 
   &__color {
@@ -38,21 +32,28 @@
     margin-right: 10px;
   }
 
-  &__icon {
-    $size: 12px;
-    width: $size;
-    height: $size;
-    transform: rotate(45deg);
-    opacity: 0;
-    transition: opacity 0.2s ease-in-out;
+  &__wrapper {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
 
-    path {
-      transition: stroke 0.2s ease-in-out;
-    }
+    &_icon {
+      $size: 12px;
+      width: $size;
+      height: $size;
+      transform: rotate(45deg);
+      opacity: 0;
+      transition: opacity 0.2s ease-in-out;
 
-    &:hover {
       path {
-        stroke: #000;
+        transition: stroke 0.2s ease-in-out;
+      }
+
+      &:hover {
+        path {
+          stroke: #000;
+        }
       }
     }
   }

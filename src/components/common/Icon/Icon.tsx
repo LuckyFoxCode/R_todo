@@ -5,7 +5,6 @@ interface IconProps {
   name: IconName;
   className?: string;
   onClick?: () => void;
-  id?: string;
 }
 
 type IconName = 'all' | 'plus' | 'checked';

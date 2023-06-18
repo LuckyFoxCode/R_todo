@@ -21,13 +21,10 @@ export const FolderList: FC<FolderListProps> = ({ data, setData }) => {
     setData(updateData);
   };
 
-  // console.log(data.filter((item) => item.id === '01'));
-  console.log(data);
-
   const handleDeleteFolder = (id: string) => {
-    // const updateData = data.filter((item) => item.id === id);
+    const updateData = data.filter((folder) => folder.id !== id);
 
-    setData(data.filter((item) => item.id !== id));
+    setData(updateData);
   };
 
   return (

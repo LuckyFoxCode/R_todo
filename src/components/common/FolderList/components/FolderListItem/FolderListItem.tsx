@@ -15,23 +15,26 @@ export const FolderListItem: FC<FolderListItemProps> = ({
   handleActiveFolder,
   handleDeleteFolder,
 }) => {
+  const { id, color, title, isSelected } = item;
+
   return (
     <li
-      className={clsx(styles.item, item.isSelected ? styles.active : null)}
-      onClick={() => handleActiveFolder(item.id)}>
-      <div className={styles.item__wrapper}>
-        <div
-          className={styles.item__color}
-          style={{ backgroundColor: item.color }}
-        />
-        {item.title}
-      </div>
-      <Icon
-        name='plus'
-        className={styles.item__icon}
-        onClick={() => handleDeleteFolder(item.id)}
-        id={item.id}
+      className={clsx(styles.item, isSelected ? styles.active : null)}
+      onClick={() => handleActiveFolder(id)}>
+      <div
+        className={styles.item__color}
+        style={{ backgroundColor: color }}
       />
+
+      <div className={styles.item__wrapper}>
+        {title}
+
+        <Icon
+          name='plus'
+          className={styles.item__wrapper_icon}
+          onClick={() => handleDeleteFolder(id)}
+        />
+      </div>
     </li>
   );
 };
